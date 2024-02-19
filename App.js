@@ -5,10 +5,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingScreen from './screens/OnboardingScreen';
 import LoginScreen from './screens/LoginScreen';
+import SignUpScreen from './screens/SignUpScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Stack = createStackNavigator();
 
 const App = () => {
+
   const [loading, setLoading] = useState(true)
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
 
@@ -45,6 +48,7 @@ const App = () => {
             />
           )}
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )

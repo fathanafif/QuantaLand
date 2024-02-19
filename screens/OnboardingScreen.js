@@ -1,4 +1,5 @@
 import React from 'react';
+import AppLoading from 'expo-app-loading';
 import {
     SafeAreaView,
     Image,
@@ -10,6 +11,28 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
+import {
+    useFonts,
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,6 +60,28 @@ const slides = [
 ];
 
 const Slide = ({ item }) => {
+
+    const [fontsLoaded] = useFonts({
+        Poppins_100Thin,
+        Poppins_100Thin_Italic,
+        Poppins_200ExtraLight,
+        Poppins_200ExtraLight_Italic,
+        Poppins_300Light,
+        Poppins_300Light_Italic,
+        Poppins_400Regular,
+        Poppins_400Regular_Italic,
+        Poppins_500Medium,
+        Poppins_500Medium_Italic,
+        Poppins_600SemiBold,
+        Poppins_600SemiBold_Italic,
+        Poppins_700Bold,
+        Poppins_700Bold_Italic,
+        Poppins_800ExtraBold,
+        Poppins_800ExtraBold_Italic,
+        Poppins_900Black,
+        Poppins_900Black_Italic,
+    });
+
     return (
         <View style={[styles.container, { width }]}>
             <View style={styles.imageContainer}>
@@ -45,7 +90,7 @@ const Slide = ({ item }) => {
                     style={{ height: '75%', width, resizeMode: 'contain' }}
                 />
             </View>
-            <Image source={require('../assets/images/bottomOval.png')} style={[styles.halfOval, {width}]}/>
+            <Image source={require('../assets/images/bottomOval.png')} style={[styles.halfOval, { width }]} />
             <View>
                 <Text style={styles.title}>{item?.title}</Text>
                 <Text style={styles.subtitle}>{item?.subtitle}</Text>
@@ -55,6 +100,7 @@ const Slide = ({ item }) => {
 };
 
 const OnboardingScreen = ({ navigation }) => {
+
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
     const ref = React.useRef();
     const updateCurrentSlideIndex = e => {
@@ -84,6 +130,7 @@ const OnboardingScreen = ({ navigation }) => {
             <View
                 style={{
                     height: height * 0.20,
+                    marginBottom: 24,
                     justifyContent: 'space-between',
                     paddingHorizontal: 20,
                 }}>
@@ -112,16 +159,17 @@ const OnboardingScreen = ({ navigation }) => {
                 </View>
 
                 {/* Render buttons */}
-                <View style={{ marginBottom: 20 }}>
+                <View style={{ marginBottom: 10 }}>
                     {currentSlideIndex == slides.length - 1 ? (
                         <View style={{ height: 50 }}>
                             <TouchableOpacity
                                 style={styles.btn}
                                 onPress={() => navigation.replace('LoginScreen')}>
-                                <Text style={{ 
-                                    fontWeight: 'bold', 
+                                <Text style={{
+                                    fontWeight: 'bold',
                                     fontSize: 15,
-                                    color: '#fff' }}>
+                                    color: '#fff'
+                                }}>
                                     GET STARTED
                                 </Text>
                             </TouchableOpacity>
@@ -196,30 +244,29 @@ const styles = StyleSheet.create({
         backgroundColor: '#b20090',
         flex: 0,
         alignItems: 'center',
-        justifyContent:'center',
-        height: height * 0.40,
+        justifyContent: 'center',
+        height: height * 0.45,
     },
     halfOval: {
         height: 48,
-        marginBottom: 48,
+        marginBottom: 32,
     },
     subtitle: {
-        fontWeight: '600',
-        fontSize: 18,
+        fontSize: 16,
+        // fontFamily: 'Poppins_400Regular',
         lineHeight: 28,
         marginBottom: 10,
         color: '#a8a8a8',
         textAlign: 'center',
-        marginHorizontal: 32,
+        marginHorizontal: 45,
         marginTop: 12,
     },
     title: {
-        fontWeight: '900',
-        fontSize: 25,
-        letterSpacing: 0,
+        fontSize: 28,
+        // fontFamily: 'Poppins_600SemiBold',
         marginBottom: 10,
         lineHeight: 36,
-        color: '#4c4c4c',
+        color: '#252525',
         textAlign: 'center',
         paddingHorizontal: 26,
         marginHorizontal: 24,
